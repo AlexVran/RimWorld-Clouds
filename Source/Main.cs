@@ -137,7 +137,11 @@ namespace Clouds
 		{
 			var currentMap = Find.CurrentMap;
 			if (currentMap == null)
+			{
+				// Deactivate all clouds when on world map
+				CloudAssets.ApplyToAll(clouds => clouds.Active = false);
 				return;
+			}
 
 			var clouds = CloudAssets.CloudsFor(currentMap, true);
 			clouds.Alpha = GenMath.LerpDoubleClamped(20, 30, 0f, clouds.BaseAlpha, __instance.rootPos.y);

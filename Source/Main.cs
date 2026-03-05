@@ -136,7 +136,7 @@ namespace Clouds
 		public static void Postfix(CameraDriver __instance)
 		{
 			var currentMap = Find.CurrentMap;
-			if(DeactivateClouds(currentMap))
+			if (DeactivateClouds(currentMap))
 				return;
 
 			var clouds = CloudAssets.CloudsFor(currentMap, true);
@@ -152,8 +152,7 @@ namespace Clouds
 				return true;
 			}
 
-			var currentBiome = currentMap.Biome;
-			var isVacuumBiome = currentMap.Biome is not null && currentBiome.inVacuum;
+			var isVacuumBiome = currentMap.Biome?.inVacuum == true;
 			if (isVacuumBiome)
 			{
 				CloudAssets.ApplyToAll(clouds => clouds.Active = false);
